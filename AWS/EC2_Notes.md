@@ -32,11 +32,63 @@ EC2 is a regional service.
 
 ![EC2 service](./assets/images/AWS_EC2.png)
 
-EBS Volume is hard drive attached to instance.
+EBS Volume
+: Data is virtual hard drive attached to instance.
 
-Security group controls the inbound and outbound traffic to the instance.
+Security Group
+: Specific rules that controls the inbound and outbound traffic to the instance.
+
+Internet Gateway
+: Gateway enables access to and from the internet.
 
 ## EC2 Instance Launch and Connection
 
+For launching EC2 instance in AWS console following are the steps
+
+Locate EC2 service in the dashboard. Once in EC2 service dashboard click on "Launch Instance" button.
+- Select the AMI and OS. We can select the customised AMI here.
+- Select the instance type.
+- Select or create a key pair. Key pair is used to securely login into the instance. Its created for particular region.
+- Select the VPC, sub net and enable public ip.
+- Select or create the security group.
+- Select the storage (EBS volume).
+
+| SSH/Putty | RDP | EC2 Instance Connect | Session Manager |
+| ----------- | ----------- | ----------- | ----------- |
+| All operating systems. Linux, Mac by default have SSH. For Windows client we use Putty  | Windows only | All operating systems. |All operating systems. |
+| Terminal/CLI | Desktop/ GUI | Terminal/CLI/Browser | Terminal/CLI |
+| SSH daemon | Remote Desktop Service | SSH daemon | SSH agent |
+| Uses instance key pair | Requires RDP client | Temporary key pair | IAM access control |
+| Port 22(of client and instance) must be open | Port 3389 must be open | Port 22 must be open | No Ports must be open |
+| Anyone with key pair can access instance | Need username and password to login | IAM access control via policy | IAM access control via policy |
+
+
+## EC2 User Data and Metadata
+
+EC2 User Data
+: User data is code that runs when the instance starts for the first time.
+
+- User data is limited to max 16 kb of code(usually bash script).
+- Batch and PowerShell scripts can be run on Windows.
+
+EC2 Meta Data
+: Information about instance is available at http://169.254.169.254/latest/meta-data/
+
+- The IP is a local ip and can be accessed only after connecting to the system.
+
+
+## EC2 Accessing Services
+
+Access Keys
+- Each instance already has AWS CLI. AWS CLI is configured with access keys
+- The access key is associated with an IAM user account.
+- The access key will use permissionns assigned to the IAM user.
+- Down side is access keys are stored on Instance file system which can pose a security risk.
+
+EC2 Instance Profile
+- Create IAM role and add required policies.
+- Attach IAM role to the instance.
+- The role is assumed by the EC2 instance to perform necessary actions.
+- No credentials are stored on the instance file system.
 
 
