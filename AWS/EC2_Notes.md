@@ -92,3 +92,20 @@ EC2 Instance Profile
 - No credentials are stored on the instance file system.
 
 
+## EC2 Placement Groups
+
+Availabitity zone consists of one or more data centers.
+
+Cluster
+: Packs instances close together inside an availability zone. This strategy enables workloads to achieve the low-latency network performance necessary for tightly-coupled node to node communication that is typical of HPC applications.
+
+Partition
+: Spreads your instances accross logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions. This strategy is typically used by large distributed and replicated workloads, sucha as Hadoop, Cassandra, and Kafka.
+
+- Amazon EC2 ensures that each partition within a placement group has its own set of racks.
+- Each rack has its own network and power source. No two partitions within a placement group share the same racks, allowing you to isolate the impact of hardware failure within your application.
+- Partition placement groups can be used to deploy large distributed and replicated workloads, such as HDFS, HBase, and Cassandra, across distinct racks.
+- Partition placement groups are not supported for Dedicated Hosts
+
+Spread
+: Strictly places a small group of instances across distinct underlying hardware to reduce correlated failures. Maximum of 7 instances running per group, per AZ
