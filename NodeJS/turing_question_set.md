@@ -44,3 +44,10 @@ Part 2
 Part 3
 1) What is the difference between CJS and ESM module system
 2) What is a stream and types of streaming in node js
+3) What is the difference between sync and async methods of file system module
+4) What is the difference between clusters and worker threads
+5) What is the blocking code - explain from the call stack perspective
+6) How would you use node js assert module
+7) What are the different error handling mechanisms in node js
+8) What is the difference between process.nextTick() and setImmediate()
+9) What is dependency injection and what is the advantage
